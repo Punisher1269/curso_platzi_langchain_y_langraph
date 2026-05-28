@@ -4,6 +4,7 @@
         "agent": "./src/agents/main.py:agent",
         "simple": "./src/agents/simple.py:agent",
         "rag" : "./src/agents/rag.py:agent",
+        "code_review" : "./src/agents/code_review.py:agent",
         "react" : "./src/agents/react.py:agent",
         "support" : "./src/agents/support/agent.py:agent",
         "booking" : "./src/agents/support/nodes/booking/node.py:booking_node"
