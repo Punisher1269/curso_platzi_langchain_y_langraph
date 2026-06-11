@@ -2,6 +2,7 @@ from agents.support.state import State
 from langchain.chat_models import init_chat_model
 from agents.support.nodes.conversation.tools import tools
 from agents.support.nodes.conversation.promt import SYSTEM_PROMT
+from langchain_core.messages import AIMessage
 
 ai_model = init_chat_model("openai:gpt-4o", temperature=1)
 ai_model = ai_model.bind_tools(tools)
@@ -18,6 +19,7 @@ def conversation(state: State):
     last_message = history[-1]
     # customer_name = state.get("customer_name", "Jhon Doe")
     ai_message = ai_model.invoke([("system", SYSTEM_PROMT), ("user", last_message.text)])
+    ai_message = AIMessage(content=ai_message.text) # importante para no pasar metadata al contexto de la conversasion
     text_content = ""
     for block in ai_message.content:
         if isinstance(block, dict) and "text" in block:

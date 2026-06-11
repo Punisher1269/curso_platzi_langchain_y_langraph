@@ -6,6 +6,6 @@ from langchain.agents import create_agent
 
 booking_node = create_agent(
     model="google_genai:gemini-3-flash-preview",
-    tools=tools , 
+    tools=tools, 
     system_prompt=prompt_template.format(),
 )

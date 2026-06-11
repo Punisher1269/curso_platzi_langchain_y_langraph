@@ -3,7 +3,6 @@ from langgraph.graph import StateGraph, START, END
 from langchain.chat_models import init_chat_model
 from pydantic import BaseModel, Field
 from typing import Literal
-import random
 
 
 class State(TypedDict):
@@ -42,7 +41,7 @@ def evaluator_node(state: State):
     return {"is_funny" : schema.is_funny, "feedback" : schema.feedback}
 
 
-def router_edge(state : State) -> Literal[END,"generator_node"]:
+def router_edge(state : State) -> Literal[END,"generator_node"]: # type: ignore
     is_funny = state.get("is_funny", None)
     if is_funny:
         return END
