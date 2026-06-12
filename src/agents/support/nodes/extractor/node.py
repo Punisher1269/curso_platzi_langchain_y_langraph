@@ -21,7 +21,7 @@ def extractor(state : State):
     customer_name = state.get("customer_name")
     history = state["messages"]
     new_state = {}
-    if customer_name is None or len(history) >= 5:
+    if customer_name is None and len(history) >= 5:
         schema = llm_with_structured_output.invoke([("system", SYSTEM_PROMT)] + history)
         new_state["customer_name"] = schema.name
         new_state["phone"] = schema.phone
